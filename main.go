@@ -30,7 +30,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/gogo/protobuf/proto"
+	"github.com/golang/protobuf/proto"
 	descriptor "github.com/golang/protobuf/protoc-gen-go/descriptor"
 	plugin "github.com/golang/protobuf/protoc-gen-go/plugin"
 )
@@ -163,8 +163,7 @@ func main() {
 	}
 
 	// You must use the requests unmarshal method to handle this type
-	err = req.Unmarshal(data)
-	if err != nil {
+	if err := proto.Unmarshal(data, req); err != nil {
 		panic(err)
 	}
 
